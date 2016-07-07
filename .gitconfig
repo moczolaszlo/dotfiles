@@ -1,0 +1,51 @@
+[core]
+	autocrlf = input
+	editor = nano
+	attributesfile = ~/.gitattributes
+	excludesfile = ~/.gitignore_global
+	safecrlf = true
+[include]
+	path = ~/.gitconfig_local
+[credential]
+	helper = cache --timeout=3600
+[alias]
+	st = status
+	co = checkout
+	ci = commit -a -m
+	ps = push origin HEAD
+	dt = difftool -y
+	mergenf = merge --no-ff
+	cp = cherry-pick
+	cpn = cherry-pick -n
+	wb = "!f() { wb=\"work/$1\"; git fetch; git checkout -b $wb origin/master; git commit -m \"$wb initial\" --allow-empty; git push origin $wb:$wb --set-upstream; }; f"
+	wbdelete = "!f() { wb=\"work/$1\"; git push origin :$wb; git branch -D $wb; }; f"
+[grep]
+	lineNumber = true
+[color]
+	ui = auto
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+[user]
+	name = Laszlo Moczo
+	email = moczo.laszlo@ustream.tv
+[push]
+	default = upstream
+[branch]
+	autosetuprebase = always
+[merge]
+	ff = false
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
